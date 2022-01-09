@@ -5,18 +5,24 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class AddressBook {
-	Scanner sc = new Scanner(System.in);	
-	public void editContact(Map<String, AddressBookDetails> addressBook, AddressBookDetails information) {
-			System.out.println("Enter the name of person u want to edit details : ");
-			String editInfoOfName = sc.next();
-			addressBook.replace(editInfoOfName, information, infoObjectCreater());
-		    }
-	private void deleteContact(Map<String, AddressBookDetails> addressBook, AddressBookDetails information) {
+Scanner sc = new Scanner(System.in);
+	
+	
+	
+	public void editContact(Map<String, AddressBookDetails> addressBook, AddressBookDetails information)
+	{
+		System.out.println("Enter the name of person u want to edit details : ");
+		String editInfoOfName = sc.next();
+		addressBook.replace(editInfoOfName, information, infoObjectCreater());
+	    }
+	
+	private void deleteContact(Map<String, AddressBookDetails> addressBook, AddressBookDetails information) 
+	{
 		System.out.println("Enter the name of person u want to delete details : ");
 		String editInfoOfName = sc.next();
 		addressBook.remove(editInfoOfName);
 	    }
-	
+
 	public AddressBookDetails infoObjectCreater() {
 		Scanner sc = new Scanner(System.in);
 		 /*----------------Strings----------------------*/
@@ -39,19 +45,21 @@ public class AddressBook {
         System.out.println("Enter phone Number = ");
         long PhoneNumber = sc.nextLong();
         
-        AddressBookDetails editedInformation = new AddressBookDetails(firstName,lastName,address,subCity,state,email,Zip,PhoneNumber);
-        return editedInformation;
+        AddressBookDetails information = new AddressBookDetails(firstName,lastName,address,subCity,state,email,Zip,PhoneNumber);
+        return information;
         }
 	
 	
-	public void addContact() {
+	public void addContact()
+	{
 		Scanner sc = new Scanner(System.in);
     	Map<String, AddressBookDetails> addressBook = new HashMap<>();
     	String ans = "Y";
-    	 AddressBookDetails information = null;
-    	while(ans.equals("Y")) {
+    	AddressBookDetails information = null;
+    	while(ans.equals("Y"))
+    	{
         
-            /*----------------Strings----------------------*/
+            //----------------Strings----------------------//
             System.out.println("Enter first name = ");
             String firstName = sc.next();
             System.out.println("Enter Last name = ");
@@ -74,7 +82,8 @@ public class AddressBook {
             information = new AddressBookDetails(firstName,lastName,address,subCity,state,email,Zip,PhoneNumber);
 	
 	        addressBook.put(firstName,information);
-	        for(String AddressBookDetails: addressBook.keySet()){
+	        for(String AddressBookDetails: addressBook.keySet())
+	        {
 	            System.out.println("firstName = " + information.getFirstName() +
 	                    "\nlast Name = "+ information.getLastName() +
 	                    "\naddress = "+ information.getAddress() +
@@ -88,18 +97,19 @@ public class AddressBook {
         	System.out.println("Do you want to add new contact (Y-yes/N-no): ");
         	ans = sc.next();
         }
-    	System.out.println("Edit Contact (press 1)"
-				+ "Delete Contact (press 2)");
-		int action = sc.nextInt();
-		switch(action) {
-			case 1: editContact(addressBook,information);
-			break;
-			
-			case 2: deleteContact(addressBook,information);
-			break;
-			
-			default: System.err.println("invalid input");
-				
-		}
+    		System.out.println("Edit Contact (press 1)"
+    				+ "Delete Contact (press 2)");
+    		int action = sc.nextInt();
+    		switch(action) {
+    			case 1: editContact(addressBook,information);
+    			break;
+    			
+    			case 2: deleteContact(addressBook,information);
+    			break;
+    			
+    			default: System.err.println("invalid input");
+    			break;
+    				
+    		}
 	}
 }
