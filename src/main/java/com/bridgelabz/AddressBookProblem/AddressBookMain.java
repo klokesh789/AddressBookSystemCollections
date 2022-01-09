@@ -7,6 +7,8 @@ import java.util.Scanner;
 public class AddressBookMain {
 	 public static void main(String[] args) {
 	        Scanner sc = new Scanner(System.in);
+	        String ans = "Y";
+	    	while(ans.equals("Y")) {
 	            /*----------------Strings----------------------*/
 	            System.out.println("Enter first name = ");
 	            String firstName = sc.next();
@@ -43,6 +45,10 @@ public class AddressBookMain {
 	                    "\nZip = "+ information.getZipCode() +
 	                    "\nPhoneNumber = "+ information.getPhoneNumber());
 	        	};
+	        	System.out.println("Do you want to add new contact (Y-yes/N-no): ");
+	        	ans = sc.next();
 	        }
+	 }
+		
 
 }
