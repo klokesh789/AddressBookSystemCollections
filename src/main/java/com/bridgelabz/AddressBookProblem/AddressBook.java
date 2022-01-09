@@ -11,6 +11,11 @@ public class AddressBook {
 			String editInfoOfName = sc.next();
 			addressBook.replace(editInfoOfName, information, infoObjectCreater());
 		    }
+	private void deleteContact(Map<String, AddressBookDetails> addressBook, AddressBookDetails information) {
+		System.out.println("Enter the name of person u want to delete details : ");
+		String editInfoOfName = sc.next();
+		addressBook.remove(editInfoOfName);
+	    }
 	
 	public AddressBookDetails infoObjectCreater() {
 		Scanner sc = new Scanner(System.in);
@@ -83,10 +88,18 @@ public class AddressBook {
         	System.out.println("Do you want to add new contact (Y-yes/N-no): ");
         	ans = sc.next();
         }
-    		System.out.println("Do you want to edit any contact (Y-yes/N-no) : ");
-    		String ansSecond = sc.next();
-    		if(ansSecond.equals("Y")) {
-    		editContact(addressBook,information);
-    		}
+    	System.out.println("Edit Contact (press 1)"
+				+ "Delete Contact (press 2)");
+		int action = sc.nextInt();
+		switch(action) {
+			case 1: editContact(addressBook,information);
+			break;
+			
+			case 2: deleteContact(addressBook,information);
+			break;
+			
+			default: System.err.println("invalid input");
+				
+		}
 	}
 }
