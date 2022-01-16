@@ -5,21 +5,21 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class AddressBook {
-	Scanner sc = new Scanner(System.in);
+	Scanner sc = new Scanner(System.in);	
 	
 	public void editContact(Map<String, AddressBookDetails> addressBook, AddressBookDetails information)
 	{
 		System.out.println("Enter the name of person u want to edit details : ");
 		String editInfoOfName = sc.next();
 		addressBook.replace(editInfoOfName, information, infoObjectCreater());
-	    }
+    }
 	
 	private void deleteContact(Map<String, AddressBookDetails> addressBook, AddressBookDetails information) 
 	{
 		System.out.println("Enter the name of person u want to delete details : ");
 		String editInfoOfName = sc.next();
 		addressBook.remove(editInfoOfName);
-	    }
+   }
 
 	public AddressBookDetails infoObjectCreater() {
 		Scanner sc = new Scanner(System.in);
@@ -48,8 +48,7 @@ public class AddressBook {
         }
 	
 	
-	public void addContact()
-	{
+	public void addContact()	{
 		Scanner sc = new Scanner(System.in);
 		boolean cond = true;
 		while(cond) {
@@ -62,12 +61,21 @@ public class AddressBook {
 	    	String ans = "Y";
 	    	AddressBookDetails information = null;
 	    	System.out.println("--------Contacts in " + nameOfAddressBook + "---------");
+	    	
+	    	//-----boolean is not used coz here ans is controlling looping condition u can see that at end of while loop---//
+	    	
+	    	resume:	  
 	    	while(ans.equals("Y"))
 	    	{
 	        
 	            //----------------Strings----------------------//
-	            System.out.println("Enter first name = ");
+	
+	        System.out.println("Enter first name = ");
 	            String firstName = sc.next();
+	            if(addressBook.containsKey(firstName)) {
+	            	System.err.println("Person already exist..enter valid input!");
+	            	continue resume;
+	            }
 	            System.out.println("Enter Last name = ");
 	            String lastName = sc.next();
 	            System.out.println("Enter Address = ");
@@ -84,6 +92,8 @@ public class AddressBook {
 	            int Zip = sc.nextInt();
 	            System.out.println("Enter phone Number = ");
 	            long PhoneNumber = sc.nextLong();
+	            
+	            
 	            
 	            information = new AddressBookDetails(firstName,lastName,address,subCity,state,email,Zip,PhoneNumber);
 		
@@ -123,5 +133,4 @@ public class AddressBook {
     		}
 		}
 	}
-
 }
