@@ -3,8 +3,15 @@ package com.bridgelabz.AddressBookProblem;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AddressBook {
+	Map<String, HashMap<String, AddressBookDetails>> primeAddressBook = new HashMap<>();
+	AddressBookDetails information = null;
+	Map<String, AddressBookDetails> addressBook = new HashMap<>();
+	Map<String, AddressBookDetails> preAddressBook = new HashMap<>();
+	Map<String, AddressBookDetails> addressBookByCity = new HashMap<>();
+	Map<String, AddressBookDetails> addressBookByState = new HashMap<>();
 	Scanner sc = new Scanner(System.in);	
 	
 	public void editContact(Map<String, AddressBookDetails> addressBook, AddressBookDetails information)
@@ -20,6 +27,28 @@ public class AddressBook {
 		String editInfoOfName = sc.next();
 		addressBook.remove(editInfoOfName);
    }
+	//-----------------with stream----------------------//
+		private void searchContactByCity(AddressBookDetails information) {
+			System.out.println("Enter city name = ");
+			String cityNameForSearch = sc.next();
+			
+			Map<String,AddressBookDetails> searchAddressBookByCity =addressBookByCity.entrySet().stream()
+					.filter(e->e.getKey().equals(cityNameForSearch))
+					.collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));
+			System.out.println(searchAddressBookByCity.toString());
+			
+		}
+		
+		private void searchContactByState(AddressBookDetails information) {
+			System.out.println("Enter city name = ");
+			String stateNameForSearch = sc.next();
+			
+			Map<String,AddressBookDetails> searchAddressBookByState =addressBookByCity.entrySet().stream()
+					.filter(e->e.getKey().equals(stateNameForSearch))
+					.collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));
+			System.out.println(searchAddressBookByState);
+			
+		}
 
 	public AddressBookDetails infoObjectCreater() {
 		Scanner sc = new Scanner(System.in);
